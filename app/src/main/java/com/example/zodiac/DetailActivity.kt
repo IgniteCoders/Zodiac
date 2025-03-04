@@ -1,6 +1,7 @@
 package com.example.zodiac
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -51,11 +52,11 @@ class DetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_favorite -> {
-                println("Menu favorito")
+                Log.i("MENU", "Menu favorito")
                 true
             }
             R.id.action_share -> {
-                println("Menu compartir")
+                Log.i("MENU", "Menu compartir")
                 true
             }
             else -> super.onOptionsItemSelected(item)
