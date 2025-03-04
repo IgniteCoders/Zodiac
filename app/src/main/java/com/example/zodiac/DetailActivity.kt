@@ -1,6 +1,7 @@
 package com.example.zodiac
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,12 @@ class DetailActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_HOROSCOPE_ID = "HOROSCOPE_ID"
     }
+
+    lateinit var nameTextView: TextView
+    lateinit var dateTextView: TextView
+    lateinit var iconImageView: ImageView
+
+    lateinit var horoscope: Horoscope
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +34,22 @@ class DetailActivity : AppCompatActivity() {
         }
 
         val id = intent.getStringExtra(EXTRA_HOROSCOPE_ID)!!
+        horoscope = Horoscope.findById(id)
 
+        initView()
 
+        loadData()
+    }
 
-        val horoscope = Horoscope.findById(id)
-        findViewById<TextView>(R.id.text).text = "id: ${getString(horoscope.name)}"
+    private fun loadData() {
+        nameTextView.setText(horoscope.name)
+        dateTextView.setText(horoscope.dates)
+        iconImageView.setImageResource(horoscope.icon)
+    }
+
+    private fun initView() {
+        nameTextView = findViewById(R.id.nameTextView)
+        dateTextView = findViewById(R.id.dateTextView)
+        iconImageView = findViewById(R.id.iconImageView)
     }
 }
