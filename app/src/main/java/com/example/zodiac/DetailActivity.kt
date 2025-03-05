@@ -1,7 +1,7 @@
 package com.example.zodiac
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+
 
 class DetailActivity : AppCompatActivity() {
 
@@ -72,7 +73,13 @@ class DetailActivity : AppCompatActivity() {
                 true
             }
             R.id.action_share -> {
-                Log.i("MENU", "Menu compartir")
+                val sendIntent = Intent()
+                sendIntent.setAction(Intent.ACTION_SEND)
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
+                sendIntent.setType("text/plain")
+
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
