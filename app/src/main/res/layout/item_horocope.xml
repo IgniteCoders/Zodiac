@@ -15,7 +15,8 @@
             android:id="@+id/iconImageView"
             android:layout_width="128dp"
             android:layout_height="128dp"
-            android:src="@drawable/aries_icon"/>
+            android:src="@drawable/aries_icon"
+            app:tint="@color/horoscope_color" />
 
         <ImageView
             android:id="@+id/favoriteImageView"

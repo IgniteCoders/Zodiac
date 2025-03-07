@@ -13,7 +13,8 @@
         android:layout_width="240dp"
         android:layout_height="240dp"
         tools:src="@drawable/aries_icon"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        app:tint="@color/horoscope_color"/>
 
     <TextView
         android:id="@+id/nameTextView"
