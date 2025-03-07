@@ -82,6 +82,10 @@ class DetailActivity : AppCompatActivity() {
                 startActivity(shareIntent)
                 true
             }
+            android.R.id.home -> {
+                finish()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -98,6 +102,8 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         nameTextView = findViewById(R.id.nameTextView)
         dateTextView = findViewById(R.id.dateTextView)
         iconImageView = findViewById(R.id.iconImageView)
