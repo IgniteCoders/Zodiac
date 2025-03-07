@@ -64,11 +64,7 @@ class DetailActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_favorite -> {
                 isFavorite = !isFavorite
-                if (isFavorite) {
-                    session.setFavorite(horoscope.id)
-                } else {
-                    session.setFavorite("")
-                }
+                session.setFavorite(horoscope.id, isFavorite)
                 setFavoriteIcon()
                 true
             }
