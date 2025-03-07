@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:gravity="center_horizontal">
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -12,42 +13,28 @@
 
         <ImageView
             android:id="@+id/iconImageView"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@drawable/aries_icon"
-            android:layout_marginEnd="16dp"/>
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:src="@drawable/aries_icon"/>
 
         <ImageView
             android:id="@+id/favoriteImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:src="@drawable/ic_favorite_selected"
             app:tint="@color/favorite"
-            android:layout_gravity="end|bottom"
-            android:layout_marginEnd="8dp"/>
+            android:layout_gravity="end|bottom"/>
 
     </FrameLayout>
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/nameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/nameTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nombre"
-            android:textSize="24sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/dateTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Fechas"
-            android:textSize="18sp" />
-
-    </LinearLayout>
+        android:text="Nombre"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
 </LinearLayout>
