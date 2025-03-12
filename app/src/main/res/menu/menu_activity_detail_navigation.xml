@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_daily"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_today"
+        android:title="Hoy"/>
+    <item
+        android:id="@+id/action_weekly"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_week"
+        android:title="Semanal"/>
+    <item
+        android:id="@+id/action_monthly"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_month"
+        android:title="Mensual"/>
+</menu>

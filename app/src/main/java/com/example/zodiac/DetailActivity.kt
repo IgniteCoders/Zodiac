@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,6 +34,8 @@ class DetailActivity : AppCompatActivity() {
     lateinit var dateTextView: TextView
     lateinit var iconImageView: ImageView
     lateinit var horoscopeLuckTextView: TextView
+    lateinit var bottomNavigation: BottomNavigationView
+    lateinit var progressBar: LinearProgressIndicator
 
     lateinit var horoscope: Horoscope
     var isFavorite = false
@@ -106,7 +111,7 @@ class DetailActivity : AppCompatActivity() {
 
         isFavorite = session.isFavorite(horoscope.id)
 
-        getHoroscopeLuck()
+        getHoroscopeLuck("daily")
     }
 
     private fun initView() {
@@ -116,6 +121,25 @@ class DetailActivity : AppCompatActivity() {
         dateTextView = findViewById(R.id.dateTextView)
         iconImageView = findViewById(R.id.iconImageView)
         horoscopeLuckTextView = findViewById(R.id.horoscopeLuckTextView)
+        progressBar = findViewById(R.id.progressBar)
+        bottomNavigation = findViewById(R.id.bottomNavigation)
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.action_daily -> {
+                    getHoroscopeLuck("daily")
+                    true
+                }
+                R.id.action_weekly -> {
+                    getHoroscopeLuck("weekly")
+                    true
+                }
+                R.id.action_monthly -> {
+                    getHoroscopeLuck("monthly")
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun setFavoriteIcon() {
@@ -126,12 +150,13 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun getHoroscopeLuck () {
+    private fun getHoroscopeLuck (period: String) {
+        progressBar.visibility = View.VISIBLE
         CoroutineScope(Dispatchers.IO).launch {
             var urlConnection: HttpsURLConnection? = null
 
             try {
-                val url = URL("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=${horoscope.id}&day=TODAY")
+                val url = URL("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/$period?sign=${horoscope.id}&day=TODAY")
                 urlConnection = url.openConnection() as HttpsURLConnection
 
                 if (urlConnection.responseCode == 200) {
@@ -149,6 +174,7 @@ class DetailActivity : AppCompatActivity() {
 
                     CoroutineScope(Dispatchers.Main).launch {
                         horoscopeLuckTextView.text = horoscopeLuck
+                        progressBar.visibility = View.GONE
                     }
                     /*runOnUiThread {
 
